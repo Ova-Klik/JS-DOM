@@ -34,29 +34,42 @@ let books =
     );
 }
 
-function renderBooks() {
-
-    ul.innerHTML = "";
-
-    books.forEach(book => {
-
-        let li = document.createElement("li");
-
-        li.innerHTML = `
-            <span class="name">${book}</span>
-            <span class="delete">delete</span>
-        `;
-
-        ul.appendChild(li);
-    });
+// Accept an optional list; fall back to full books array
+function renderBooks(list = books) {
+  ul.innerHTML = "";
+  list.forEach(book => {
+    let li = document.createElement("li");
+    li.innerHTML = `
+      <span class="name">${book}</span>
+      <span class="delete">delete</span>
+    `;
+    ul.appendChild(li);
+  });
 }
 
-saveBooks();
-renderBooks();
+// function renderBooks() {
+
+//     ul.innerHTML = "";
+
+//     books.forEach(book => {
+
+//         let li = document.createElement("li");
+
+//         li.innerHTML = `
+//             <span class="name">${book}</span>
+//             <span class="delete">delete</span>
+//         `;
+
+//         ul.appendChild(li);
+//     });
+// }
+
+ saveBooks();
+ renderBooks();
 
 document
     .getElementById("book-list")
-    .addEventListener("click", (event) => {
+    .addEventListener("click",(event) => {
 
         if (
             event.target.classList.contains("delete")
@@ -91,34 +104,34 @@ addForm.addEventListener("submit",(event) => {
 
         const newBook =
             input.value.trim();
+        
+        if (!newBook.trim()) {
+            alert("No input to add");
+            return;
+        }
 
-            // regexBook= /^[a-zA-Z0-9]+$/;
-            // newBookIsValid = regexBook.test(newBook);
+        const exists = books.some(book => book === newBook.trim());
 
-        if (!newBook) return;
-        books.forEach(book => {
-            if(newBook!==book)return;
-           
-        });
-        books.push(newBook); 
+        if (exists) {
+            alert("Book Already Exists");
+            return;
+        }
+
+        books.push(newBook.trim());
 
         saveBooks();
-
         renderBooks();
+        input.value = "";            
+});
 
-        input.value = "";
-    }
-);
+const searchBook = document.querySelector("#search-books input");
 
-// let bookList= document.getElementById("book-list");
+searchBook.addEventListener("keyup", () => {
+  const searchTerm = searchBook.value.trim().toLowerCase();
 
-// bookList.addEventListener("click", (event)=>{
-//     // console.log(event);
+  const filteredBooks = books.filter(book =>
+    book.toLowerCase().includes(searchTerm)
+  );
 
-//     if(event.target.className=="delete"){
-//         let li = event.target.parentElement;
-//         li.remove();
-//     }
-// })
-
-
+  renderBooks(filteredBooks);
+});
