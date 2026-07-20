@@ -1,0 +1,397 @@
+@import "tailwindcss";
+
+:root {
+    --color-white: #FFFFFF;
+    --color-grey: #E5E5E5;
+    --color-orange: #FCA311;
+    --color-navy: #14213D;
+    --color-black: #000000;
+
+    --bg-primary: var(--color-white);
+    --bg-secondary: var(--color-grey);
+    --text-primary: var(--color-black);
+    --text-secondary: var(--color-navy);
+    --accent: var(--color-orange);
+    --surface: var(--color-white);
+    --border-color: var(--color-grey);
+}
+
+.dark {
+    --bg-primary: var(--color-black);
+    --bg-secondary: var(--color-navy);
+    --text-primary: var(--color-white);
+    --text-secondary: var(--color-grey);
+    --accent: var(--color-orange);
+    --surface: var(--color-navy);
+    --border-color: #2a3a5c;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Announcement bar */
+.flyer {
+    background-color: var(--color-navy);
+    @apply text-white text-sm flex items-center min-h-10 relative px-2;
+    transition: background-color 0.4s ease;
+}
+.signup {
+    @apply w-6/12 flex items-center justify-center text-center mx-auto;
+}
+.close {
+    @apply absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.close:hover {
+    color: var(--color-orange);
+    transform: translateY(-50%) rotate(90deg);
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border-color);
+    @apply min-h-20 flex items-center justify-between px-8 gap-8;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+.logo h1 {
+    color: var(--text-primary);
+    @apply text-2xl font-black tracking-tight;
+    transition: color 0.4s ease;
+}
+.nav-links ul {
+    @apply flex gap-6 list-none items-center;
+}
+.nav-links a {
+    color: var(--text-primary);
+    @apply text-sm no-underline flex items-center gap-1;
+    transition: color 0.25s ease;
+}
+.nav-links a:hover {
+    color: var(--color-orange);
+}
+.arrow {
+    @apply text-xs;
+}
+
+/* Search with hover styling */
+.search-wrapper {
+    @apply flex-1 max-w-md relative flex items-center;
+}
+.search-icon {
+    color: var(--text-secondary);
+    @apply absolute left-3 pointer-events-none;
+    transition: color 0.25s ease;
+}
+.search-wrapper input {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1.5px solid transparent;
+    @apply w-full rounded-full pl-10 pr-4 py-2 text-sm outline-none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+.search-wrapper:hover input,
+.search-wrapper input:focus {
+    border-color: var(--color-orange);
+    box-shadow: 0 0 0 4px rgba(252, 163, 17, 0.15);
+    background-color: var(--surface);
+}
+.search-wrapper:hover .search-icon,
+.search-wrapper input:focus ~ .search-icon {
+    color: var(--color-orange);
+}
+
+/* Theme toggle */
+.theme-toggle {
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    @apply flex items-center justify-center rounded-full p-2 cursor-pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.3s ease;
+}
+.theme-toggle:hover {
+    background-color: var(--color-orange);
+    color: var(--color-black);
+    transform: rotate(20deg);
+}
+
+.icons {
+    color: var(--text-primary);
+    @apply flex gap-4 items-center;
+}
+.icons svg {
+    transition: color 0.25s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+.icons svg:hover {
+    color: var(--color-orange);
+    transform: scale(1.1);
+}
+
+/* Hero — true 50/50 split */
+.hero {
+    background-color: var(--bg-secondary);
+    @apply flex items-center px-8 py-12 gap-8;
+    transition: background-color 0.4s ease;
+}
+.hero-text {
+    color: var(--text-primary);
+    @apply w-1/2;
+}
+.hero-text h1 {
+    @apply text-5xl font-black leading-tight mb-4;
+}
+.hero-text p {
+    color: var(--text-secondary);
+    @apply mb-6;
+}
+.shop-now {
+    background-color: var(--color-orange);
+    color: var(--color-black);
+    @apply rounded-full px-8 py-3 mb-8 font-semibold;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+.shop-now:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+.stats {
+    border-top: 1px solid var(--border-color);
+    @apply flex gap-6 pt-6;
+    transition: border-color 0.4s ease;
+}
+.stats h2 {
+    color: var(--text-primary);
+    @apply text-2xl font-black;
+}
+.stats p {
+    color: var(--text-secondary);
+    @apply text-sm;
+}
+.hero-image {
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    @apply w-1/2 rounded-xl min-h-[400px];
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Brands strip */
+.brands {
+    background-color: var(--color-navy);
+    @apply text-white flex justify-around items-center flex-wrap gap-4 py-6 px-8 text-lg font-semibold;
+    transition: background-color 0.4s ease;
+}
+
+/* Product sections */
+.products-section {
+    @apply py-12 px-8;
+}
+.section-title {
+    color: var(--text-primary);
+    @apply text-3xl md:text-4xl font-black text-center mb-8;
+    transition: color 0.4s ease;
+}
+.product-grid {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-6;
+}
+.product-card {
+    @apply flex flex-col gap-2;
+}
+.product-image {
+    background-color: var(--bg-secondary);
+    @apply rounded-xl aspect-square mb-2;
+    transition: background-color 0.4s ease, transform 0.3s ease;
+}
+.product-card:hover .product-image {
+    transform: translateY(-4px);
+}
+.product-card h3 {
+    color: var(--text-primary);
+    @apply font-semibold;
+}
+.rating {
+    color: var(--color-orange);
+    @apply flex items-center gap-1 text-sm;
+}
+.rating span {
+    color: var(--text-secondary);
+    @apply ml-1;
+}
+.price .current {
+    color: var(--text-primary);
+    @apply font-bold;
+}
+.view-all {
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    @apply block mx-auto mt-8 rounded-full px-8 py-2;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+.view-all:hover {
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
+    color: var(--color-black);
+}
+.divider {
+    border-color: var(--border-color);
+    @apply mx-8;
+}
+
+/* Dress style */
+.dress-style {
+    background-color: var(--bg-secondary);
+    @apply mx-8 rounded-2xl p-8 my-12;
+    transition: background-color 0.4s ease;
+}
+.dress-grid {
+    @apply grid grid-cols-2 gap-4 mt-8;
+}
+.dress-box {
+    background-color: var(--surface);
+    @apply rounded-xl p-6 flex items-start;
+    transition: background-color 0.4s ease, transform 0.25s ease;
+}
+.dress-box:hover {
+    transform: translateY(-4px);
+}
+.dress-box.large {
+    @apply min-h-[250px];
+}
+.dress-box.wide {
+    @apply min-h-[200px] col-span-1;
+}
+.dress-box h3 {
+    color: var(--text-primary);
+    @apply text-2xl font-semibold;
+}
+
+/* Testimonials */
+.testimonials {
+    @apply px-8 py-12;
+}
+.testimonials-header {
+    @apply flex items-center justify-between mb-8;
+}
+.carousel-arrows {
+    color: var(--text-primary);
+    @apply flex gap-3;
+}
+.carousel-arrows svg {
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+.carousel-arrows svg:hover {
+    color: var(--color-orange);
+}
+.testimonial-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+}
+.testimonial-card {
+    border: 1px solid var(--border-color);
+    @apply rounded-xl p-6;
+    transition: border-color 0.4s ease, transform 0.25s ease;
+}
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-orange);
+}
+.stars {
+    color: var(--color-orange);
+    @apply flex gap-1 mb-2;
+}
+.name {
+    color: var(--text-primary);
+    @apply flex items-center gap-1 font-semibold mb-2;
+}
+.verified {
+    color: var(--color-orange);
+}
+.testimonial-card p {
+    color: var(--text-secondary);
+    @apply text-sm;
+}
+
+/* Newsletter */
+.newsletter {
+    background-color: var(--color-navy);
+    @apply text-white rounded-2xl mx-8 p-10 flex flex-wrap items-center justify-between gap-6;
+    transition: background-color 0.4s ease;
+}
+.newsletter h2 {
+    @apply text-2xl font-black;
+}
+.newsletter-form {
+    @apply flex flex-col gap-3 w-full max-w-sm;
+}
+.email-input {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    @apply rounded-full flex items-center gap-2 px-4 py-2;
+    transition: box-shadow 0.25s ease;
+}
+.email-input:hover {
+    box-shadow: 0 0 0 4px rgba(252, 163, 17, 0.25);
+}
+.email-input input {
+    @apply flex-1 outline-none border-none text-sm bg-transparent;
+}
+.newsletter-form button {
+    background-color: var(--color-orange);
+    color: var(--color-black);
+    @apply rounded-full py-2 text-sm font-medium;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+.newsletter-form button:hover {
+    background-color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-secondary);
+    @apply px-8 pt-12 pb-6 grid grid-cols-2 md:grid-cols-5 gap-8 mt-12;
+    transition: background-color 0.4s ease;
+}
+.footer-brand h1 {
+    color: var(--text-primary);
+    @apply text-2xl font-black mb-3;
+}
+.footer-brand p {
+    color: var(--text-secondary);
+    @apply text-sm mb-4 max-w-xs;
+}
+.social-icons {
+    color: var(--text-primary);
+    @apply flex gap-3;
+}
+.social-icons svg {
+    cursor: pointer;
+    transition: color 0.25s ease, transform 0.2s ease;
+}
+.social-icons svg:hover {
+    color: var(--color-orange);
+    transform: scale(1.15);
+}
+.footer-col h4 {
+    color: var(--text-primary);
+    @apply font-semibold mb-3 text-sm;
+}
+.footer-col ul {
+    color: var(--text-secondary);
+    @apply flex flex-col gap-2 list-none text-sm;
+}
+.footer-col a {
+    transition: color 0.25s ease;
+}
+.footer-col a:hover {
+    color: var(--color-orange);
+}
+.footer-bottom {
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+    @apply col-span-full mt-8 pt-4 text-sm;
+}
